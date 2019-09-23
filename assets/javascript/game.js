@@ -18,9 +18,9 @@ var bands = ["Charon", "Sentenced", "HIM", "Children of Bodom", "Nightwish", "Op
 //This will define the variables and get a random band from the array
 var targetBands = document.getElementById("band-insert")
 var chosenBand = bands[Math.floor(Math.random()* bands.length)]
-var bandName = ""
+var bandName = []
 for (i = 0; i < chosenBand.length; i++ ){
-	var bandName = bandName + " " +  "_";
+	bandName.push("_");
 }
 
 //usar indexOf
@@ -30,9 +30,10 @@ console.log(bandName);
 console.log(chosenBand.length);
 console.log(bandName.length);
 
-targetBands.textContent = bandName
+targetBands.textContent = bandName.join(" ")
+
 for (var i = 0; i < chosenBand.length; i++){
-	console.log(chosenBand[i] + chosenBand[i].indexOf(i))
+	console.log(chosenBand[i] + " " + i)
 }
 
 
@@ -40,23 +41,14 @@ for (var i = 0; i < chosenBand.length; i++){
  document.onkeyup = function(event) {
 	 indices = []
 	for (var i = 0; i < chosenBand.length; i++){
-		 console.log("Chosen Band i: " + chosenBand[i])
-		var indexN = chosenBand.search(event.key)
-		console.log("IndexN: " + indexN)
 		if (event.key === chosenBand[i]){
 			indices.push(i)
-			console.log("You guessed right, the letter you typed is in position " + indices)
+			console.log("You guessed right, the letter you typed is in position " + i)
 		} else {
 			console.log("Wrong guess!")
 			}
-		var charIndex = chosenBand.indexOf(event.key)
-		console.log("charIndex: " + charIndex)
-
+			console.log(indices)
 		 }
-
-		//  alert("You're right" + chosenBand.indexOf(event.key))
-		if (chosenBand.includes(event.key)){
-	 }
 	//  alert("you pressed the " + event.key + " key.")
 
 	//This loop will get a random band from the bands array
