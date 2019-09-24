@@ -27,34 +27,44 @@ for (i = 0; i < chosenBand.length; i++ ){
 
 console.log(chosenBand);
 console.log(bandName);
-console.log(chosenBand.length);
-console.log(bandName.length);
 
-targetBands.textContent = bandName.join(" ")
+
 
 for (var i = 0; i < chosenBand.length; i++){
 	console.log(chosenBand[i] + " " + i)
 }
 
+// for (var i = 0; i < bandName.length; i++){
+// 	console.log(bandName[i] + " " + i)
+// }
 
  //This gets the letter the user types and trigger the game
  document.onkeyup = function(event) {
-	 indices = []
-	for (var i = 0; i < chosenBand.length; i++){
-		if (event.key === chosenBand[i]){
-			indices.push(i)
-			console.log("You guessed right, the letter you typed is in position " + i)
-		} else {
-			console.log("Wrong guess!")
-			}
-			console.log(indices)
-		 }
-	//  alert("you pressed the " + event.key + " key.")
+	 var corrects = []
+	 var wrongs = []
+	 var userKey = event.key.toLowerCase()
+	 var chosenLower = chosenBand.toLowerCase()
+	 var letterToPush = []
+	 var guessesLeft = 13
 
-	//This loop will get a random band from the bands array
-	for (var i = 0; i < bands.length; i++){
-		// var chosenBand = bands[Math.floor(Math.random()* bands.length)]
-	}
+
+	 console.log("Typed letter: " + event.key)
+	for (var i = 0; i < chosenBand.length; i++){
+		if (userKey === chosenLower[i]){
+			corrects.push(i)
+			letterToPush.push(chosenBand[i])
+			console.log("You guessed right, the letter you typed is in position " + i)
+			console.log(letterToPush)
+			bandName.splice(i,1, chosenBand[i])
+
+		} else {
+			wrongs.push(userKey)
+			console.log("Wrong guess! at index: " + i)
+			console.log(wrongs)
+			}
+		console.log(bandName)
+		 }
+		 targetBands.textContent = bandName.join(" ")
 
  }
 
