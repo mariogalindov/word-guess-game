@@ -34,10 +34,6 @@ for (var i = 0; i < chosenBand.length; i++){
 	console.log(chosenBand[i] + " " + i)
 }
 
-// for (var i = 0; i < bandName.length; i++){
-// 	console.log(bandName[i] + " " + i)
-// }
-
  //This gets the letter the user types and trigger the game
  document.onkeyup = function(event) {
 	 var corrects = []
@@ -52,13 +48,14 @@ for (var i = 0; i < chosenBand.length; i++){
 	for (var i = 0; i < chosenBand.length; i++){
 		if (userKey === chosenLower[i]){
 			corrects.push(i)
+			console.log("corrects: " + corrects)
 			letterToPush.push(chosenBand[i])
 			console.log("You guessed right, the letter you typed is in position " + i)
 			console.log(letterToPush)
 			bandName.splice(i,1, chosenBand[i])
 
 		} else {
-			wrongs.push(userKey)
+			wrongs.push(chosenBand[i])
 			console.log("Wrong guess! at index: " + i)
 			console.log(wrongs)
 			}
