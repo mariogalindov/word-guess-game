@@ -18,9 +18,12 @@ var bands = ["Charon", "Sentenced", "HIM", "Children of Bodom", "Nightwish", "Op
 //This will define the variables and get a random band from the array
 var targetBands = document.getElementById("band-insert")
 var chosenBand = bands[Math.floor(Math.random()* bands.length)]
+
+//This generates the variable to push the text to
 var bandName = []
+//This pushes the underscores based on the length of the word
 for (i = 0; i < chosenBand.length; i++ ){
-	bandName.push("_");
+	bandName[i] = ("_");
 }
 
 //usar indexOf
@@ -28,38 +31,57 @@ for (i = 0; i < chosenBand.length; i++ ){
 console.log(chosenBand);
 console.log(bandName);
 
+// for (var i = 0; i < chosenBand.length; i++){
+// 	console.log(chosenBand[i] + " " + i)
+// }
 
-
-for (var i = 0; i < chosenBand.length; i++){
-	console.log(chosenBand[i] + " " + i)
-}
-
+var corrects = []
+var wrongLetters = []
  //This gets the letter the user types and trigger the game
  document.onkeyup = function(event) {
-	 var corrects = []
-	 var wrongs = []
+
 	 var userKey = event.key.toLowerCase()
 	 var chosenLower = chosenBand.toLowerCase()
 	 var letterToPush = []
 	 var guessesLeft = 13
 
+// // Tut lines
+// 	console.log(chosenLower.indexOf(userKey))
+// 	// if (userKey.indexOf(chosenLower) > -1){
+// 	// 	console.log()
+// 	// }
 
 	 console.log("Typed letter: " + event.key)
+
+
+// Ayuda de Jeronimo
+	 if (chosenBand.indexOf(userKey) === -1){
+		console.log(wrongLetters)
+		wrongLetters.push(userKey)
+		console.log(wrongLetters)
+    }
+    else{
+        corrects.push(userKey)
+        console.log("corrects: " + corrects)
+	}
+	
+
 	for (var i = 0; i < chosenBand.length; i++){
 		if (userKey === chosenLower[i]){
-			corrects.push(i)
-			console.log("corrects: " + corrects)
-			letterToPush.push(chosenBand[i])
-			console.log("You guessed right, the letter you typed is in position " + i)
-			console.log(letterToPush)
-			bandName.splice(i,1, chosenBand[i])
+			// corrects.push(1)
+			// console.log("corrects: " + corrects)
+			// console.log("You guessed right, the letter you typed is in position " + i)
+			// console.log("Letter to push: " + letterToPush)
+			bandName[i] = userKey
+			// bandName.splice(i,1, chosenBand[i]) // este sí funciona aquí
 
 		} else {
-			wrongs.push(chosenBand[i])
-			console.log("Wrong guess! at index: " + i)
-			console.log(wrongs)
+			// wrongLetters.push(userKey)
+			// console.log("Wrong guess! at index: " + i)
+			// console.log("wrongs: " + wrongLetters)
+
 			}
-		console.log(bandName)
+		// console.log(bandName)
 		 }
 		 targetBands.textContent = bandName.join(" ")
 
